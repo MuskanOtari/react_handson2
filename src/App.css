@@ -37,11 +37,14 @@
     }
 }
 
-.oneDiv {
+html {
     background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
     background-repeat: no-repeat;
     height: 100vh;
     width: 100vw;
+}
+
+.oneDiv {
     display: block;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
