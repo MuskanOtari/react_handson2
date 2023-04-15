@@ -1,71 +1,54 @@
 import React, { Component } from 'react'
+import "./Components.css"
 
 export default class ClassCompo extends Component {
-state ={
-    name:"",
-    dept: "",
-    rating :"",
-    data:[]
-}
-
- handleChange=(e)=>{
-        this.setState({[e.target.name]:e.target.value})
-        this.setState({[e.target.dept]:e.target.value})
-        this.setState({[e.target.rating]:e.target.value})
-        // console.log(name);
+    state={
+        name:"",
+        department:"",
+        rating:"",
+        data:[]
     }
- handleSubmit =()=>{
+    handleChange =(e)=>{
+        this.setState({[e.target.name]:[e.target.value]})
+        this.setState({[e.target.department]:[e.target.value]})
+        this.setState({[e.target.rating]:[e.target.value]})
+    }
+    handleSubmit=()=>{
         const dataObj={
-            name: this.state.name,
-            dept:this.state.dept,
-            rating:this.state.rating,
+            name:this.state.name,
+            department:this.state.department,
+            rating:this.state.rating
         }
         const arr=this.state.data;
         arr.push(dataObj);
-        console.log(arr);
-
-        this.setState(this.state.data=arr)
+        this.setState({[this.state.data]:arr});
         console.log(this.state.name);
         console.log(this.state.data);
-       
-
     }
   render() {
     return (
-        <>
-       <div className="oneDiv">
-       <h1 className='heading'>EMPLOYEE FEEDBACK FORM</h1>
-       <div className="form">
-       <div className="row">
-       <label>Name: </label>
-       <input type='text' placeholder="Enter Your Name" name="name" onChange={this.handleChange}/>
-       </div>
-       <div className="row">
-       <label>Department: </label> 
-       <input type='text' placeholder="Enter Your Department" name="dept" onChange={this.handleChange}/>
-       </div>
-      <div className="row">
-      <label>Rating: </label> 
-      <input type='text' placeholder="Enter Rating" name="rating" onChange={this.handleChange}/>
+      <>
+      <div className="input-fields">
+      <label>Name:</label>
+      <input type="text" placeholder="Enter Name" name="name" onChange={this.handleChange}></input><br></br>
+      <label>Department:</label>
+      <input type="text" placeholder="Enter Department" name="department" onChange={this.handleChange}></input><br></br>
+      <label>Rating:</label>
+      <input type="text" placeholder="Rating" name="rating" onChange={this.handleChange}></input><br></br>
+      <button onClick={this.handleSubmit}>Submit</button>
       </div>
-        
-        <button onClick={this.handleSubmit}>Submit</button>
-       
-       </div>
-       <div className="bottom">
-        {this.state.data.map((i,index)=>{
+      <div className="parent">
+      {/* <div className="data"> */}
+      {this.state.data.map((item,index)=>{
         return(
-           
-            <div className="box">
-             <h1 key={index}>{i.name} || {i.dept} || {i.rating}</h1>
-           </div>
-          
+          <div className='data'>
+            <p key={index}>Name : {item.name} | Department : {item.department} | Rating : {item.rating}</p>
+          </div>
         )
-    })} </div>
-       </div>
-
-     </>
+      })}
+      {/* </div> */}
+      </div>
+      </>
     )
   }
 }
-
